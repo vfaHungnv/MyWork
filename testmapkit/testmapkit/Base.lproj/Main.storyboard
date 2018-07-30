@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LAE-HU-VGl">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                            </mapView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="WIf-3Z-7Ty">
+                                <rect key="frame" x="81.5" y="620" width="212" height="29"/>
+                                <segments>
+                                    <segment title="Standard"/>
+                                    <segment title="Satellite"/>
+                                    <segment title="Hybrid"/>
+                                </segments>
+                                <connections>
+                                    <action selector="setMapType:" destination="BYZ-38-t0r" eventType="valueChanged" id="12F-zs-eXF"/>
+                                </connections>
+                            </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rPr-No-LDb">
+                                <rect key="frame" x="210" y="30" width="150" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="adJ-Up-mVB"/>
+                                </constraints>
+                                <state key="normal" title="Current location">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="zoomToCurrentLocation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qJX-yp-Ngn"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eRr-cP-AUS">
+                                <rect key="frame" x="15" y="30" width="150" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="DBd-tM-u8K"/>
+                                </constraints>
+                                <state key="normal" title="Search">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="eRr-cP-AUS" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.4" id="13p-NR-5tx"/>
+                            <constraint firstItem="LAE-HU-VGl" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="3Y2-DC-Xks"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="rPr-No-LDb" secondAttribute="trailing" constant="15" id="NVz-6T-HyX"/>
+                            <constraint firstItem="rPr-No-LDb" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="eRr-cP-AUS" secondAttribute="trailing" constant="45" id="RYs-Rr-lFd"/>
+                            <constraint firstItem="eRr-cP-AUS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="15" id="TOu-Yv-bKA"/>
+                            <constraint firstItem="eRr-cP-AUS" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="Wzb-R5-Seu"/>
+                            <constraint firstItem="rPr-No-LDb" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="YXT-LN-e6z"/>
+                            <constraint firstItem="LAE-HU-VGl" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="d5U-f4-Loz"/>
+                            <constraint firstItem="LAE-HU-VGl" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="f5J-M8-cvR"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="WIf-3Z-7Ty" secondAttribute="bottom" constant="19" id="fz1-qS-MsD"/>
+                            <constraint firstItem="rPr-No-LDb" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.4" id="gRt-G0-ZeP"/>
+                            <constraint firstItem="LAE-HU-VGl" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="wdn-fa-XLj"/>
+                            <constraint firstItem="WIf-3Z-7Ty" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="xJH-8F-ddV"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="currentLcationButton" destination="rPr-No-LDb" id="NZY-TL-mS7"/>
+                        <outlet property="mapView" destination="LAE-HU-VGl" id="bkp-Zj-mNZ"/>
+                        <outlet property="searchButton" destination="eRr-cP-AUS" id="hSd-CT-suf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="32.799999999999997" y="33.733133433283363"/>
+        </scene>
+    </scenes>
+</document>
