@@ -20,13 +20,25 @@
     self.mapView.zoomEnabled = YES;
     self.mapView.scrollEnabled = YES;
     self.mapView.delegate = self;
-    self.searchButton.hidden = YES;
     self.mapView.showsUserLocation = YES;
-    self.mapView.userTrackingMode = MKUserTrackingModeFollow;
     
-    [self addAnnotation];
+    self.locationManager = [LocationManager sharedManager];
+    [self.locationManager startMonitoringLocation];
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    self.mapView.delegate = nil;
+    self.mapView = nil;
+}
+    
+- (void)addAnnotation {
+//    CLLocationCoordinate2D location = CLLocationCoordinate2DMake(self.locationManager.coordinate.latitude, self.locationManager.coordinate.longitude);
+//    MKCoordinateSpan span = MKCoordinateSpanMake(0.05, 0.05);
+//    MKCoordinateRegion region = MKCoordinateRegionMake(location, span);
+//    [self.mapView setRegion:region animated:YES];
+}
+    
 - (IBAction)setMapType:(UISegmentedControl *)sender {
     switch (sender.selectedSegmentIndex) {
         case 0:
@@ -54,31 +66,32 @@
     region.center.longitude = self.mapView.userLocation.coordinate.longitude;
     region.span.latitudeDelta = spanX;
     region.span.longitudeDelta = spanY;
-    self.searchButton.hidden = YES;
     [self.mapView setRegion:region animated:YES];
 }
-
-- (void)addAnnotation {
-    CLLocationCoordinate2D location = CLLocationCoordinate2DMake(10.801679, 106.647678);
-    MKCoordinateSpan span = MKCoordinateSpanMake(0.05, 0.05);
-    MKCoordinateRegion region = MKCoordinateRegionMake(location, span);
-    [self.mapView setRegion:region animated:YES];
     
+- (IBAction)addAnnotion:(UIButton *)sender {
     MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
-    annotation.coordinate = location;
+    annotation.coordinate = CLLocationCoordinate2DMake(self.locationManager.coordinate.latitude, self.locationManager.coordinate.longitude);
     annotation.title = @"My home";
     annotation.subtitle = @"103 Hoang Hoa Tham F.13 Q.Tan Binh HCM";
     [self.mapView addAnnotation:annotation];
     
+    [self performSegueWithIdentifier:@"detailSegue" sender:nil];
 }
-
+    
 -(void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
-    self.searchButton.hidden = NO;
-    NSLog(@"lat:%f - lng:%f", mapView.userLocation.location.coordinate.latitude, mapView.userLocation.location.coordinate.longitude);
+    MKMapRect mRect = [mapView visibleMapRect];
+    MKMapPoint topMapPoint = MKMapPointMake(MKMapRectGetMidX(mRect), MKMapRectGetMinY(mRect));
+    MKMapPoint bottomMapPoint = MKMapPointMake(MKMapRectGetMidX(mRect), MKMapRectGetMaxY(mRect));
+    
+    CLLocationDistance currentDist = MKMetersBetweenMapPoints(topMapPoint, bottomMapPoint);
+    CLLocationCoordinate2D mCoordinate = [mapView centerCoordinate];
+    
+    NSLog(@"lat:%f - lng:%f - dist:%f", mCoordinate.latitude, mCoordinate.longitude, currentDist);
 }
 
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
-    [self.mapView setCenterCoordinate:userLocation.coordinate animated:YES];
+//    [self.mapView setCenterCoordinate:userLocation.coordinate animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

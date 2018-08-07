@@ -8,15 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import "LocationManager.h"
 
 @interface ViewController : UIViewController <MKMapViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *currentLcationButton;
-@property (weak, nonatomic) IBOutlet UIButton *searchButton;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
+@property (strong, nonatomic) LocationManager *locationManager;
 
 - (IBAction)setMapType:(UISegmentedControl *)sender;
 - (IBAction)zoomToCurrentLocation:(UIButton *)sender;
-
+- (IBAction)addAnnotion:(UIButton *)sender;
+    
 @end
 

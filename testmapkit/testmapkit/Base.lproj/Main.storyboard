@@ -52,9 +52,12 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="DBd-tM-u8K"/>
                                 </constraints>
-                                <state key="normal" title="Search">
+                                <state key="normal" title="Add Annotation">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="addAnnotion:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GEA-xM-Qv3"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -78,12 +81,27 @@
                     <connections>
                         <outlet property="currentLcationButton" destination="rPr-No-LDb" id="NZY-TL-mS7"/>
                         <outlet property="mapView" destination="LAE-HU-VGl" id="bkp-Zj-mNZ"/>
-                        <outlet property="searchButton" destination="eRr-cP-AUS" id="hSd-CT-suf"/>
+                        <segue destination="4uZ-2c-jP6" kind="show" identifier="detailSegue" id="xdd-rJ-UZY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="32.799999999999997" y="33.733133433283363"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Blb-vr-0zO">
+            <objects>
+                <viewController id="4uZ-2c-jP6" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="UIf-ty-dy9">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="fSX-8w-joG"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NR6-vU-wpb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="716" y="34"/>
         </scene>
     </scenes>
 </document>
